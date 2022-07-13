@@ -1,25 +1,21 @@
-import Banner from "./components/Banner/banner.jsx";
-import Business from "./components/Business/Business.jsx";
-import Footer from "./components/Footer/Footer.jsx";
-import Header from "./components/Header/header.jsx";
-import Kaspipay from "./components/Kaspipay/Kaspipay.jsx";
-import Partner from "./components/Partner/Partner.jsx";
-import Products from "./components/Products/Products.jsx";
-import Section from "./components/Section/section.jsx";
-import Store from "./components/Store/store.jsx";
+import { Routes, Route, Link } from "react-router-dom";
 import "./index.css";
+import Main from "./components/Product_Pages/Main.jsx";
+import Homepage from "./components/Homepage.jsx";
 function App() {
   return (
     <div className="App">
-      <Header />
-      <Banner />
-      <Section />
-      <Store />
-      <Products />
-      <Business />
-      <Kaspipay />
-      <Partner />
-      <Footer />
+      <Routes>
+        <Route exact path="/" element={<Homepage />} />
+        <Route
+          exact
+          path="/electronics"
+          element={<Main active="electronics" />}
+        />
+        <Route exact path="/jewelery" element={<Main active="jewelery" />} />
+        <Route exact path="/men" element={<Main active="men" />} />
+        <Route exact path="/women" element={<Main active="women" />} />
+      </Routes>
     </div>
   );
 }
