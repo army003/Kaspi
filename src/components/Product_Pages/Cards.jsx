@@ -32,7 +32,7 @@ function Cards(props) {
             <span className="mb-2">В кредит</span>
             <span>
               <span className="bg-[#ffd300] p-1 text-black font-bold">
-                7 345 ₸{" "}
+                7 345 ₸
               </span>
               x12
             </span>

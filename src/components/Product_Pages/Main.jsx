@@ -4,6 +4,8 @@ import { AiOutlineSearch } from "react-icons/ai";
 import Cards from "./Cards.jsx";
 import { useState, useEffect } from "react";
 import { BsArrowRightShort } from "react-icons/bs";
+import Logo from "../Header/Logo.svg";
+import Footer from "../Footer/Footer.jsx";
 function Main(props) {
   const [products, setProducts] = useState([]);
   useEffect(() => {
@@ -63,8 +65,26 @@ function Main(props) {
   }, []);
   return (
     <div>
-      <Header />
-      <div className="max-w-[1000px] mx-auto flex pt-[6%] box-border text-[#0089d0] ">
+      <header className="fixed w-full z-10">
+        <div className=" bg-[rgb(255,255,255)] shadow-lg shadow-[rgba(0,0,0,.08)] ">
+          <div className="flex  justify-between w-[100%] py-[1.3%] mx-auto max-w-[1000px] items-center">
+            <img src={Logo} alt="kaspi logo" className="w-4xl" />
+            <ul className="flex justify-around w-[25vw] text-[rgba(0,0,0,.4)] mr-[20vw]">
+              <li>
+                <a href="#">Клиентам</a>
+              </li>
+              <li>
+                <a href="#">Бизнесу</a>
+              </li>
+              <li>
+                <a href="#">Kaspi Гид</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </header>
+
+      <div className="max-w-[1000px] mx-auto flex pt-[6%] box-border text-[#0089d0]  ">
         <div className="flex max-w-[620px] w-[80%] ">
           <div className=" bg-[#e7e7e7a8] font-bold px-5 py-1 border-solid border-2 border-[#e5e7eb]">
             Магазин
@@ -215,7 +235,7 @@ function Main(props) {
                 <option value=""> Популярные</option>
               </select>
             </div>
-            <section className="grid grid-cols-3">
+            <section className="grid grid-cols-3 mb-5">
               {products.map((item) => (
                 <Cards
                   title={item.title}
@@ -228,6 +248,7 @@ function Main(props) {
           </aside>
         </main>
       </div>
+      <Footer />
     </div>
   );
 }
