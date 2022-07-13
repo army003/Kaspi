@@ -8,7 +8,25 @@ import {
 } from "react-icons/bs";
 function Store() {
   const [titles, setTitles] = useState([]);
+  const [offset, setOffset] = useState(0);
 
+  const leftClick = () => {
+    console.log("left");
+    setOffset((current) => {
+      const newOffset = current + 1040;
+
+      return Math.min(newOffset, 0);
+    });
+  };
+  const rightClick = () => {
+    console.log("right");
+    const max = -(1040 * 2);
+    setOffset((current) => {
+      const newOffset = current - 1040;
+
+      return Math.max(newOffset, max);
+    });
+  };
   useEffect(() => {
     fetch("https://fakestoreapi.com/products/categories")
       .then((response) => {
@@ -28,13 +46,39 @@ function Store() {
       <h1 className="text-5xl font-bold mb-[3%] ">
         Интернет-магазин на Kaspi.kz
       </h1>
-      <div className="flex max-w-[1240px] w-full justify-between">
-        {titles.map((title) => (
-          <Card title={title} img={Electronics} />
-        ))}
+      <div className="overflow-hidden max-w-[1045px] mx-auto">
+        <div
+          className="flex justify-between w-full "
+          style={{
+            transform: `translateX(${offset}px)`,
+            transition: "1s ease",
+          }}
+        >
+          <div className="flex max-w-[1040px] min-w-[1040px] mr-3 w-full justify-between">
+            {titles.map((title) => (
+              <Card title={title} img={Electronics} />
+            ))}
+          </div>
+          <div className="flex max-w-[1040px] min-w-[1040px] mr-3 w-full justify-between">
+            {titles.map((title) => (
+              <Card title={title} img={Electronics} />
+            ))}
+          </div>
+          <div className="flex max-w-[1040px] min-w-[1040px] w-full justify-between">
+            {titles.map((title) => (
+              <Card title={title} img={Electronics} />
+            ))}
+          </div>
+        </div>
       </div>
-      <BsFillArrowLeftCircleFill className="absolute top-[70%] text-3xl left-[6%]" />
-      <BsFillArrowRightCircleFill className="absolute top-[70%] text-3xl right-[6%]" />
+      <BsFillArrowLeftCircleFill
+        onClick={leftClick}
+        className="absolute top-[70%] text-3xl left-[6%] hover:pointer-events-auto"
+      />
+      <BsFillArrowRightCircleFill
+        onClick={rightClick}
+        className="absolute top-[70%] text-3xl right-[6%] hover:pointer-events-auto"
+      />
     </div>
   );
 }
