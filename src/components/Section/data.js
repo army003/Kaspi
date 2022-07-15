@@ -41,6 +41,16 @@ const data = [
     desc: "Без комиссий на Kaspi Gold",
     img: Transfer,
   },
+  {
+    title: "Переводы",
+    desc: "Без комиссий на Kaspi Gold",
+    img: Transfer,
+  },
+  {
+    title: "Переводы",
+    desc: "Без комиссий на Kaspi Gold",
+    img: Transfer,
+  },
 ];
 
 export default data;

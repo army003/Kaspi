@@ -5,13 +5,13 @@ module.exports = {
   theme: {
     extend: {
       keyframes: {
-        scroll: {
+        carousel: {
           "0%": { transform: "translateX(0)" },
-          "100%": { transform: "translateX(330px * 7)" },
+          "100%": { transform: "translateX(-1120px)" },
         },
       },
       animation: {
-        "auto-scroll": "scroll 40s linear infinite",
+        "carousel-scroll": "carousel 20s linear infinite",
       },
     },
   },

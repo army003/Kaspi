@@ -1,18 +1,21 @@
 import React from "react";
-import Header from "../../components/Header/header.jsx";
-import { AiOutlineSearch } from "react-icons/ai";
-import Cards from "./Cards.jsx";
-import { useState, useEffect } from "react";
-import { BsArrowRightShort } from "react-icons/bs";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import Logo from "../Header/Logo.svg";
-import Footer from "../Footer/Footer.jsx";
-import { useDispatch, useSelector } from "react-redux";
-import { addProducts } from "../../features/productsSlice.js";
-import Body from "./Body.jsx";
+import { AiOutlineSearch } from "react-icons/ai";
+import { BsArrowRightShort } from "react-icons/bs";
+import { useSelector } from "react-redux";
+import Product from "./Product";
+import Footer from "../Footer/Footer";
+import { RiStarSFill } from "react-icons/ri";
+import Reviews from "./Reviews";
 
-function Main(props) {
-  const currentPage = useSelector((state) => state.pages.activePage);
+function DetailPage() {
+  const { id } = useParams();
+
+  const productsRedux = useSelector((state) => state.products.products);
+  console.log(productsRedux[0]);
+  const product = productsRedux[0].find((item) => item.id == id);
+  console.log(product);
   return (
     <div>
       <header className="fixed w-full z-10">
@@ -118,12 +121,57 @@ function Main(props) {
           </a>
         </div>
       </nav>
-      <div>
-        <Body active={props.active} />
+      <div className="max-w-[1000px] mx-auto mt-3 text-sm mb-5">
+        <div className="flex items-center gap-2">
+          <Link to="/" className="text-[#0089d0]">
+            Kaspi Магазин
+          </Link>
+          <BsArrowRightShort className="text-2xl text-[#a7a9ac]" />
+          <Link
+            to={`/${product.category}`}
+            href=""
+            className="text-[#0089d0] capitalize"
+          >
+            {product.category}
+          </Link>
+          <BsArrowRightShort className="text-2xl text-[#a7a9ac]" />
+        </div>
+        <Product
+          key={product.id}
+          title={product.title}
+          img={product.image}
+          price={product.price}
+          ratingCount={product.rating.count}
+          id={product.id}
+          desc={product.description}
+          rating={product.rating.rate}
+        />
+      </div>
+      <div className="max-w-[1000px] mx-auto mt-3">
+        <nav className="list-none flex  w-[50%] text-center border-solid border-[0.5px] border-[#e5e7eb] border-b-0">
+          <li className="px-2 py-1 border-r-solid border-[0.5px] border-[#e5e7eb] w-full bg-[#fff] ">
+            Продавцы
+          </li>
+          <li className="px-2 py-1 border-r-solid border-[0.5px] border-[#e5e7eb] w-full">
+            Отзывы
+          </li>
+          <li className="px-2 py-1 border-r-solid border-[0.5px] border-[#e5e7eb] w-full">
+            Характеристики
+          </li>
+          <li className="px-2 py-1 border-r-solid border-[0.5px] border-[#e5e7eb] w-full">
+            Описание
+          </li>
+        </nav>
+      </div>
+      <div className="text-sm max-w-[1000px] mx-auto mb-8  bg-[#fff] border-solid border-[0.5px] border-[#e5e7eb] p-5">
+        <Reviews />
+        <Reviews />
+        <Reviews />
+        <Reviews />
       </div>
       <Footer />
     </div>
   );
 }
 
-export default Main;
+export default DetailPage;

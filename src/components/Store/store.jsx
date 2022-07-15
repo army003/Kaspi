@@ -13,16 +13,16 @@ function Store() {
   const leftClick = () => {
     console.log("left");
     setOffset((current) => {
-      const newOffset = current + 1040;
+      const newOffset = current + 1044;
 
       return Math.min(newOffset, 0);
     });
   };
   const rightClick = () => {
     console.log("right");
-    const max = -(1040 * 2);
+    const max = -(1047 * 2);
     setOffset((current) => {
-      const newOffset = current - 1040;
+      const newOffset = current - 1045;
 
       return Math.max(newOffset, max);
     });
@@ -37,7 +37,6 @@ function Store() {
         }
       })
       .then((data) => {
-        console.log(data);
         setTitles(data);
       });
   }, []);
@@ -46,7 +45,7 @@ function Store() {
       <h1 className="text-5xl font-bold mb-[3%] ">
         Интернет-магазин на Kaspi.kz
       </h1>
-      <div className="overflow-hidden max-w-[1045px] mx-auto">
+      <div className="overflow-hidden max-w-[1050px] mx-auto">
         <div
           className="flex justify-between w-full "
           style={{
